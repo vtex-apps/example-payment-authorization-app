@@ -1,0 +1,7 @@
+{
+  "extensions": {
+    "checkout/transactions": {
+      "component": "index"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "yes-no-app",
+  "vendor": "vtex",
+  "version": "0.0.0",
+  "title": "Yes No App",
+  "description": "Yes No App",
+  "defaultLocale": "en",
+  "mustUpdateAt": "2019-01-08",
+  "categories": [],
+  "registries": [],
+  "settingsSchema": {},
+  "dependencies": {},
+  "builders": {
+    "react": "2.x",
+    "pages": "0.x",
+    "messages": "0.x"
+  },
+  "scripts": {
+    "postreleasy": "vtex publish --public"
+  },
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
+}

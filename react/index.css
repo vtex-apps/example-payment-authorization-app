@@ -1,0 +1,14 @@
+.yesNoWrapper {
+  align-items: center;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  height: 500px;
+  justify-content: center;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  right: 0;
+  width: 500px;
+}
