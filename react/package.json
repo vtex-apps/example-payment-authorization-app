@@ -2,5 +2,8 @@
   "name": "yes-no-app",
   "version": "0.0.1",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "react-load-script": "^0.0.6"
+  }
 }
