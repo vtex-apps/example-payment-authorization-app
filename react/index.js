@@ -27,7 +27,7 @@ class YesNoApp extends Component {
     this.setState({scriptLoaded: true});
     grecaptcha.ready(() => {
       grecaptcha.render(this.divContainer.current, {
-        'sitekey': '6LeELrAUAAAAAJPKPpnuV-kf4mG8MlHHs6BPEyUj',
+        'sitekey': '------>REPATCHA_V2_SITE_KEY<------', //Replace with site key
         'theme': 'dark',
         'callback': this.onVerify
       });
