@@ -1,15 +1,13 @@
 {
   "name": "yes-no-app",
   "vendor": "vtex",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "title": "Yes No App",
   "description": "Yes No App",
   "defaultLocale": "en",
   "mustUpdateAt": "2019-01-08",
-  "categories": [],
-  "registries": [],
-  "settingsSchema": {},
-  "dependencies": {},
+  "dependencies": {
+  },
   "builders": {
     "react": "2.x",
     "pages": "0.x",

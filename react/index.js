@@ -8,63 +8,75 @@ class YesNoApp extends Component {
       scriptLoaded: false
     }
 
-    this.callback.bind(this)
+    this.grecaptchaContainer = React.createRef()
   }
 
   componentWillMount = () => {
-    this.injectScript()
+    this.injectScript('google-recaptcha-v2', 'https://recaptcha.net/recaptcha/api.js?render=explicit', this.handleOnLoad)
   }
 
-  sayYes = () => {
-    $(window).trigger('transactionValidation.vtex', [true])
-  }
-
-  sayNo = () => {
-    $(window).trigger('transactionValidation.vtex', [false])
+  respondTransaction = (status) => {
+    $(window).trigger('transactionValidation.vtex', [status])
   }
 
   handleOnLoad = () => {
-    console.log("alo");
     this.setState({scriptLoaded: true});
+    grecaptcha.ready(() => {
+      grecaptcha.render(this.grecaptchaContainer.current, {
+        'sitekey': '6LeELrAUAAAAAJPKPpnuV-kf4mG8MlHHs6BPEyUj',
+        'theme': 'dark',
+        'callback': this.onVerify
+      });
+    }) 
   };
 
-
-  injectScript = () => {
-    if (document.getElementById('google-recaptcha-v2')) {
+  onVerify = (e) => {
+    this.respondTransaction(true)
+  }
+  
+  injectScript = (id, src, onLoad) => {
+    if (document.getElementById(id)) {
       return
     }
 
     const head = document.getElementsByTagName('head')[0]
 
     const js = document.createElement('script')
-    js.id = 'google-recaptcha-v2'
-    js.src = 'https://www.google.com/recaptcha/api.js'
-    js.onload = this.handleOnLoad
+    js.id = id
+    js.src = src
+    js.async = true;
+    js.defer = true;
+    js.onload = onLoad
 
     head.appendChild(js)
-  }
-  
-  callback = (e) => { 
-    e.preventDefault();
-    console.log(e)
   }
 
   render() {
     const { payload } = this.props
 
-    console.log('payload', payload)
-
     return (
       <div className={styles.yesNoWrapper}>
+        <p>
+          {JSON.stringify(payload)}
+        </p>
         {
           this.state.scriptLoaded ? 
             <div 
             className="g-recaptcha"
-            callback='callback'
-            data-sitekey="6LeELrAUAAAAAJPKPpnuV-kf4mG8MlHHs6BPEyUj"
+            ref={this.grecaptchaContainer}
             ></div> 
             : 
-        <h1>Deu ruim :(</h1>}
+            <h1>
+              Not cool :(
+            </h1>
+        }
+
+        <button
+          onClick={() => {this.respondTransaction(false)}}
+          className={styles.buttonDanger}
+        >
+            Cancelar
+        </button>
       </div>
     )
   }

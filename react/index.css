@@ -2,7 +2,7 @@
   align-items: center;
   background: white;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 500px;
   justify-content: center;
   left: 0;
@@ -14,4 +14,10 @@
   top: 0;
   box-shadow: 0px 0px 26px 0px rgba(0, 0, 0, 0.42);
   z-index: 999;
+}
+
+.buttonDanger {
+  color:#fff;
+  background-color:#d9534f;
+  border-color:#d43f3a
 }
