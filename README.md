@@ -44,6 +44,13 @@ Where `status` is a boolean and  resolves(`status == true`) or rejects (`status 
 
 Please refer to the [response method implementation](https://github.com/vtex-apps/transaction-app-example/blob/3e5742c87a2771998009cff4fecacb092bb3362b/react/index.js#L22) in this repo for an example on expected response trigger. 
 
+## Checkout Payload
+
+Checkout should give you a payload via `props` to better be able to handle the order, to access that you just do:
+
+```
+const { payload } = this.props
+```
 
 ## Injecting external script
 
