@@ -6,6 +6,12 @@
 
 The transaction app is an app that creates a step verification to the checkout process allowing or rejecting an order placement. This repository provides an example on how to accomplish it.
 
+## Table of Contents
+
+- [Usage](#usage)
+- [Responding to checkout](#responding-to-checkout)
+- [Checkout Payload](#checkout-payload)
+- [Injecting external script](#injecting-external-script)
 
 ## Usage
 
