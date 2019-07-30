@@ -71,7 +71,7 @@ class YesNoApp extends Component {
             ></div> 
             : 
             <h1>
-              Not cool :(
+              Loading...
             </h1>
         }
 
