@@ -1,7 +1,7 @@
 {
   "name": "paym-step-app",
   "vendor": "vtex",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "title": "Yes No App",
   "description": "Yes No App",
   "defaultLocale": "en",
