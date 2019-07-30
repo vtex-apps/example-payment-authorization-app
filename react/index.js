@@ -12,7 +12,11 @@ class YesNoApp extends Component {
   }
 
   componentWillMount = () => {
-    this.injectScript('google-recaptcha-v2', 'https://recaptcha.net/recaptcha/api.js?render=explicit', this.handleOnLoad)
+    this.injectScript(
+      'google-recaptcha-v2', 
+      'https://recaptcha.net/recaptcha/api.js?render=explicit', 
+      this.handleOnLoad
+    )
   }
 
   respondTransaction = (status) => {
