@@ -8,7 +8,7 @@ class YesNoApp extends Component {
       scriptLoaded: false
     }
 
-    this.grecaptchaContainer = React.createRef()
+    this.divContainer = React.createRef()
   }
 
   componentWillMount = () => {
@@ -26,7 +26,7 @@ class YesNoApp extends Component {
   handleOnLoad = () => {
     this.setState({scriptLoaded: true});
     grecaptcha.ready(() => {
-      grecaptcha.render(this.grecaptchaContainer.current, {
+      grecaptcha.render(this.divContainer.current, {
         'sitekey': '6LeELrAUAAAAAJPKPpnuV-kf4mG8MlHHs6BPEyUj',
         'theme': 'dark',
         'callback': this.onVerify
@@ -67,7 +67,7 @@ class YesNoApp extends Component {
           this.state.scriptLoaded ? 
             <div 
             className="g-recaptcha"
-            ref={this.grecaptchaContainer}
+            ref={this.divContainer}
             ></div> 
             : 
             <h1>
