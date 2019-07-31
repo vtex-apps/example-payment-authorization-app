@@ -77,4 +77,4 @@ head.appendChild(js)
 
 There is an example for the script injection [here](https://github.com/vtex-apps/transaction-app-example/blob/3e5742c87a2771998009cff4fecacb092bb3362b/react/index.js#L41) 
 
-Do keep in mind that if the external js script handles DOM manipulation, then you should use React's [`ref`](https://reactjs.org/docs/refs-and-the-dom.html) to create a div container and handing it over to the library. There's also an [example](https://github.com/vtex-apps/transaction-app-example/blob/3e5742c87a2771998009cff4fecacb092bb3362b/react/index.js#L11) for doing so in this repo.  
+Do keep in mind that if the external js script handles DOM manipulation, then you should use React's [`ref`](https://reactjs.org/docs/refs-and-the-dom.html) to create a div container and hand it over to the library. There's also an [example](https://github.com/vtex-apps/transaction-app-example/blob/3e5742c87a2771998009cff4fecacb092bb3362b/react/index.js#L11) for doing so in this repo.  
