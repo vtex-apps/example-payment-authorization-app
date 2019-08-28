@@ -56,11 +56,11 @@ class YesNoApp extends Component {
   }
 
   render() {
-    const { payload } = this.props
+    const { appPayload } = this.props
 
     return (
       <div className={styles.yesNoWrapper}>
-        <p>{JSON.stringify(payload)}</p>
+        <p>{JSON.stringify(appPayload)}</p>
         {this.state.scriptLoaded ? (
           <div className="g-recaptcha" ref={this.divContainer}></div>
         ) : (
