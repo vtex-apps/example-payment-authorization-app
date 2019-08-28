@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import styles from './index.css'
 
 class YesNoApp extends Component {
-  constructor(props) { 
+  constructor(props) {
     super(props)
     this.state = {
-      scriptLoaded: false
+      scriptLoaded: false,
     }
 
     this.divContainer = React.createRef()
@@ -13,31 +13,31 @@ class YesNoApp extends Component {
 
   componentWillMount = () => {
     this.injectScript(
-      'google-recaptcha-v2', 
-      'https://recaptcha.net/recaptcha/api.js?render=explicit', 
+      'google-recaptcha-v2',
+      'https://recaptcha.net/recaptcha/api.js?render=explicit',
       this.handleOnLoad
     )
   }
 
-  respondTransaction = (status) => {
+  respondTransaction = status => {
     $(window).trigger('transactionValidation.vtex', [status])
   }
 
   handleOnLoad = () => {
-    this.setState({scriptLoaded: true});
+    this.setState({ scriptLoaded: true })
     grecaptcha.ready(() => {
       grecaptcha.render(this.divContainer.current, {
-        'sitekey': '------>REPATCHA_V2_SITE_KEY<------', //Replace with site key
-        'theme': 'dark',
-        'callback': this.onVerify
-      });
-    }) 
-  };
+        sitekey: '------>REPATCHA_V2_SITE_KEY<------', //Replace with site key
+        theme: 'dark',
+        callback: this.onVerify,
+      })
+    })
+  }
 
-  onVerify = (e) => {
+  onVerify = e => {
     this.respondTransaction(true)
   }
-  
+
   injectScript = (id, src, onLoad) => {
     if (document.getElementById(id)) {
       return
@@ -48,8 +48,8 @@ class YesNoApp extends Component {
     const js = document.createElement('script')
     js.id = id
     js.src = src
-    js.async = true;
-    js.defer = true;
+    js.async = true
+    js.defer = true
     js.onload = onLoad
 
     head.appendChild(js)
@@ -60,26 +60,19 @@ class YesNoApp extends Component {
 
     return (
       <div className={styles.yesNoWrapper}>
-        <p>
-          {JSON.stringify(payload)}
-        </p>
-        {
-          this.state.scriptLoaded ? 
-            <div 
-            className="g-recaptcha"
-            ref={this.divContainer}
-            ></div> 
-            : 
-            <h1>
-              Loading...
-            </h1>
-        }
+        <p>{JSON.stringify(payload)}</p>
+        {this.state.scriptLoaded ? (
+          <div className="g-recaptcha" ref={this.divContainer}></div>
+        ) : (
+          <h1>Loading...</h1>
+        )}
 
         <button
-          onClick={() => {this.respondTransaction(false)}}
-          className={styles.buttonDanger}
-        >
-            Cancelar
+          onClick={() => {
+            this.respondTransaction(false)
+          }}
+          className={styles.buttonDanger}>
+          Cancelar
         </button>
       </div>
     )

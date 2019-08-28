@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- `payload` property to `appPayload` to match value from API
+
 ## [0.3.0] - 2019-08-28
 
 ### Added
