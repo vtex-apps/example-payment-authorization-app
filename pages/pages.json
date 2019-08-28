@@ -1,6 +1,6 @@
 {
   "extensions": {
-    "checkout/transactions/paym-step-app": {
+    "checkout/transactions/example-payment-auth-app": {
       "component": "index"
     }
   }

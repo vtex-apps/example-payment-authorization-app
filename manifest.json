@@ -1,13 +1,12 @@
 {
-  "name": "paym-step-app",
+  "name": "example-payment-auth-app",
   "vendor": "vtex",
   "version": "0.2.1",
-  "title": "Yes No App",
-  "description": "Yes No App",
+  "title": "Example Payment Authentication App",
+  "description": "Example Payment Authentication App",
   "defaultLocale": "en",
   "mustUpdateAt": "2019-01-08",
-  "dependencies": {
-  },
+  "dependencies": {},
   "builders": {
     "react": "2.x",
     "pages": "0.x",
