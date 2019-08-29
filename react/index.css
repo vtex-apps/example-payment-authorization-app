@@ -17,7 +17,12 @@
 }
 
 .buttonDanger {
-  color:#fff;
-  background-color:#d9534f;
-  border-color:#d43f3a
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+
+.appPayload {
+  width: 100%;
+  word-break: break-word;
 }
