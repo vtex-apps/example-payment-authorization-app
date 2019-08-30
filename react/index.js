@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import styles from './index.css'
 
-class YesNoApp extends Component {
+class ExampleTransactionAuthApp extends Component {
   constructor(props) {
     super(props)
     this.state = {
       scriptLoaded: false,
+      loading: false,
     }
 
     this.divContainer = React.createRef()
@@ -35,7 +36,21 @@ class YesNoApp extends Component {
   }
 
   onVerify = e => {
-    this.respondTransaction(true)
+    const parsedPayload = JSON.parse(this.props.appPayload)
+    this.setState({ loading: true })
+
+    fetch(parsedPayload.approvePaymentUrl).then(() => {
+      this.respondTransaction(true)
+    })
+  }
+
+  cancelTransaction = () => {
+    const parsedPayload = JSON.parse(this.props.appPayload)
+    this.setState({ loading: true })
+
+    fetch(parsedPayload.denyPaymentUrl).then(() => {
+      this.respondTransaction(false)
+    })
   }
 
   injectScript = (id, src, onLoad) => {
@@ -56,27 +71,26 @@ class YesNoApp extends Component {
   }
 
   render() {
-    const { appPayload } = this.props
+    const { scriptLoaded, loading } = this.state
 
     return (
-      <div className={styles.yesNoWrapper}>
-        <p className={styles.appPayload}>{JSON.stringify(appPayload)}</p>
-        {this.state.scriptLoaded ? (
+      <div className={styles.wrapper}>
+        {scriptLoaded && !loading ? (
           <div className="g-recaptcha" ref={this.divContainer}></div>
         ) : (
-          <h1>Loading...</h1>
+          <h2>Loading...</h2>
         )}
 
-        <button
-          onClick={() => {
-            this.respondTransaction(false)
-          }}
-          className={styles.buttonDanger}>
-          Cancelar
-        </button>
+        {!loading && (
+          <button
+            onClick={this.cancelTransaction}
+            className={styles.buttonDanger}>
+            Cancelar
+          </button>
+        )}
       </div>
     )
   }
 }
 
-export default YesNoApp
+export default ExampleTransactionAuthApp
