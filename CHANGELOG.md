@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- App to call a deny and authorize URLs for checkout forward the process correctly
+
 ## [1.0.2] - 2019-08-29
+
+- Update docs
 
 ## [1.0.1] - 2019-08-29
 
