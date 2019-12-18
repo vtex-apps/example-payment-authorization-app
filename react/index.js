@@ -28,7 +28,7 @@ class ExampleTransactionAuthApp extends Component {
     this.setState({ scriptLoaded: true })
     grecaptcha.ready(() => {
       grecaptcha.render(this.divContainer.current, {
-        sitekey: '------>REPATCHA_V2_SITE_KEY<------', //Replace with site key
+        sitekey: '6LdAb8gUAAAAANbATNMAFkdqSlNZONve0zmw06tt', //Replace with site key
         theme: 'dark',
         callback: this.onVerify,
       })
