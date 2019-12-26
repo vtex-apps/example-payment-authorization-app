@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import styles from './index.css'
 
 class ExampleTransactionAuthApp extends Component {
@@ -28,7 +28,7 @@ class ExampleTransactionAuthApp extends Component {
     this.setState({ scriptLoaded: true })
     grecaptcha.ready(() => {
       grecaptcha.render(this.divContainer.current, {
-        sitekey: '------>REPATCHA_V2_SITE_KEY<------', //Replace with site key
+        sitekey: '6LdAb8gUAAAAANbATNMAFkdqSlNZONve0zmw06tt', //Replace with site key
         theme: 'dark',
         callback: this.onVerify,
       })
@@ -50,6 +50,15 @@ class ExampleTransactionAuthApp extends Component {
 
     fetch(parsedPayload.denyPaymentUrl).then(() => {
       this.respondTransaction(false)
+    })
+  }
+
+  confirmTransation = () => {
+    const parsedPayload = JSON.parse(this.props.appPayload)
+    this.setState({ loading: true })
+
+    fetch(parsedPayload.approvePaymentUrl).then(() => {
+      this.respondTransaction(true)
     })
   }
 
@@ -76,15 +85,24 @@ class ExampleTransactionAuthApp extends Component {
     return (
       <div className={styles.wrapper}>
         {scriptLoaded && !loading ? (
-          <div className="g-recaptcha" ref={this.divContainer}></div>
+          <Fragment>
+            <div className="g-recaptcha" ref={this.divContainer}></div>
+            <button
+              id="payment-app-confirm"
+              className={styles.buttonSuccess}
+              onClick={this.confirmTransation}>
+              Confirmar
+            </button>
+          </Fragment>
         ) : (
-          <h2>Loading...</h2>
+          <h2>Carregando...</h2>
         )}
 
         {!loading && (
           <button
-            onClick={this.cancelTransaction}
-            className={styles.buttonDanger}>
+            id="payment-app-cancel"
+            className={styles.buttonDanger}
+            onClick={this.cancelTransaction}>
             Cancelar
           </button>
         )}
