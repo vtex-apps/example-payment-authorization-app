@@ -15,17 +15,11 @@ The Payment Authentication app is an app that creates a step verification to the
 
 To get started you should edit the `manifest.json` file to properly select the app name, for this example: `example-payment-auth-app`. You should also input the correct initial version and, if applicable, change the vendor name.
 
-Create a new workspace and link this app to your store and workspace. Go on to `{{your-account}}.vtexcommercestable.com/checkout?workspace={{your-workspace}}`, open the browser dev tools then run:
-
-```
-window.transactionAppName = '{{your-app-name}}'
-```
-
-If you follow through the checkout process, you should now see your app running after order confirmation.
+Create a new workspace and link this app to your store and workspace. Go on to `{{your-account}}.vtexcommercestable.com/checkout?workspace={{your-workspace}}`. If you follow through the checkout process, you should now see your app running after order confirmation.
 
 **PROTIP:** _vtexcommercestable_ does not support workspace, so you might need to export your cart to run some tests. To do that, you may go `{{your-workspace}}--{{your-store}}.myvtex.com`, add products to cart, go to cart, then open your browser DevTools and run:
 
-```
+```js
 vtexjs.checkout.orderFormId
 ```
 
@@ -36,13 +30,19 @@ You should get the orderFormId and then you may inject that in _vtexcommercestab
 
 The checkout API expects a response from the app through the `transactionValidation.vtex` event, therefore an approach for responding is:
 
-```
+```js
 $(window).trigger('transactionValidation.vtex', [status])
 ```
 
 Where `status` is a boolean and resolves(`status == true`) or rejects (`status == false`) order placement.
 
 Please refer to the [response method implementation](https://github.com/vtex-apps/payment-authorization-app-example/blob/3e5742c87a2771998009cff4fecacb092bb3362b/react/index.js#L22) in this repo for an example on expected response trigger.
+
+Another event Checkout can receive is `removePaymentLoading.vtex` which tells it to remove the finishing transaction loading screen, in case your payment application has UI in which the user has to interact, since the payment application intercepts the finishing transaction process.
+
+```js
+$(window).trigger('removePaymentLoading.vtex')
+```
 
 ## Checkout Payload
 

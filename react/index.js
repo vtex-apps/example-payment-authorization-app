@@ -20,6 +20,11 @@ class ExampleTransactionAuthApp extends Component {
     )
   }
 
+  componentDidMount() {
+    // In case you want to remove payment loading in order to show an UI.
+    $(window).trigger('removePaymentLoading.vtex')
+  }
+
   respondTransaction = status => {
     $(window).trigger('transactionValidation.vtex', [status])
   }

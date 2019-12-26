@@ -7,23 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Remove Finishing Transaction loading event.
+
 ## [1.0.5] - 2019-12-26
 
 ### Added
 
-- Confirm button
+- Confirm button.
 
 ## [1.0.4] - 2019-12-18
 
 ### Changed
 
-- Recaptcha key only for the publication
+- Recaptcha key only for the publication.
 
 ## [1.0.3] - 2019-09-06
 
 ### Changed
 
-- App to call a deny and authorize URLs for checkout forward the process correctly
+- App to call a deny and authorize URLs for checkout forward the process correctly.
 
 ## [1.0.2] - 2019-08-29
 
