@@ -15,7 +15,7 @@ The Payment Authentication app is an app that creates a step verification to the
 
 To get started you should edit the `manifest.json` file to properly select the app name, for this example: `example-payment-auth-app`. You should also input the correct initial version and, if applicable, change the vendor name.
 
-Create a new workspace and link this app to your store and workspace. Go on to `{{your-account}}.vtexcommercestable.com/checkout?workspace={{your-workspace}}`. If you follow through the checkout process, you should now see your app running after order confirmation.
+Create a new workspace and link this app to your store and workspace. Go on to `{{your-account}}.vtexcommercestable.com.br/checkout?workspace={{your-workspace}}`. If you follow through the checkout process, you should now see your app running after order confirmation.
 
 **PROTIP:** _vtexcommercestable_ does not support workspace, so you might need to export your cart to run some tests. To do that, you may go `{{your-workspace}}--{{your-store}}.myvtex.com`, add products to cart, go to cart, then open your browser DevTools and run:
 
