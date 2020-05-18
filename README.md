@@ -36,7 +36,7 @@ $(window).trigger('transactionValidation.vtex', [status])
 
 Where `status` is a boolean and resolves(`status == true`) or rejects (`status == false`) order placement.
 
-Please refer to the [response method implementation](https://github.com/vtex-apps/payment-authorization-app-example/blob/3e5742c87a2771998009cff4fecacb092bb3362b/react/index.js#L22) in this repo for an example on expected response trigger.
+Please refer to the [response method implementation](https://github.com/vtex-apps/example-payment-authorization-app/blob/master/react/index.js#L28) in this repo for an example on expected response trigger.
 
 Another event Checkout can receive is `removePaymentLoading.vtex` which tells it to remove the finishing transaction loading screen, in case your payment application has UI in which the user has to interact, since the payment application intercepts the finishing transaction process.
 
@@ -69,6 +69,6 @@ js.onload = {{callback-onload}}
 head.appendChild(js)
 ```
 
-There is an example for the script injection [here](https://github.com/vtex-apps/payment-authorization-app-example/blob/3e5742c87a2771998009cff4fecacb092bb3362b/react/index.js#L41)
+There is an example for the script injection [here](https://github.com/vtex-apps/example-payment-authorization-app/blob/master/react/index.js#L70)
 
-Do keep in mind that if the external js script handles DOM manipulation, then you should use React's [`ref`](https://reactjs.org/docs/refs-and-the-dom.html) to create a div container and hand it over to the library. There's also an [example](https://github.com/vtex-apps/payment-authorization-app-example/blob/3e5742c87a2771998009cff4fecacb092bb3362b/react/index.js#L11) for doing so in this repo.
+Do keep in mind that if the external js script handles DOM manipulation, then you should use React's [`ref`](https://reactjs.org/docs/refs-and-the-dom.html) to create a div container and hand it over to the library. There's also an [example](https://github.com/vtex-apps/example-payment-authorization-app/blob/master/react/index.js#L12) for doing so in this repo.
