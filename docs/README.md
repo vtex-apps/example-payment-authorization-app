@@ -51,7 +51,7 @@ Please refer to the [response method implementation](https://github.com/vtex-app
 Checkout should give you a payload via `props` to better be able to handle the order, to access that you just do:
 
 ```
-const { appPayload } = this.props // This appPayload is a JSON as string.
+const { appPayload } = this.props // This appPayload is a serialized JSON (as string).
 ```
 
 ## Injecting external script
