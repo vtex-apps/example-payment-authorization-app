@@ -4,6 +4,11 @@
 
 The Payment Authentication app is an app that creates a step verification to the checkout process allowing or rejecting an order placement. This repository provides an example on how to accomplish it.
 
+Prerequisite:
+- [VTEX toolbet](https://vtex.io/docs/recipes/development/vtex-io-cli-installation-and-command-reference/)
+
+For more information about VTEX IO - [docs](https://vtex.io/docs/getting-started/build-stores-with-store-framework/1/)
+
 ## Table of Contents
 
 - [Usage](#usage)
