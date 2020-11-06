@@ -117,6 +117,10 @@ const { appPayload } = this.props // This appPayload is a serialized JSON (as st
 The expected response is a JSON object as in the following:
 
 ```json
+{
+    "timeToCancel": 300,
+    "transactionApproveLinl": "https://..."
+}
 ```
 
 ### Injecting external scripts
