@@ -102,7 +102,7 @@ respondTransaction = (status) => {
 
 Notice that the `respondTransaction` function receives the `status` boolean value, which resolves (`status == true`) or rejects (`status == false`) an order placement.
 
-Hence, according to the `status` value, whenever the `transactionValidation.vtex` event occurs, the `respondTransaction` function will send the appropriate response to the checkout UI.
+Hence, whenever the `transactionValidation.vtex` event occurs, the Checkout UI checks the payment status and is redirected according to the `status` value provided to the `respondTransaction` function
 
 ### Handling the order payload
 
