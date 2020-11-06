@@ -121,7 +121,7 @@ Take the following example:
 ```json
 {
     "timeToCancel": 300,
-    "transactionApproveLinl": "https://..."
+    "transactionApproveLink": "https://..."
 }
 ```
 
