@@ -92,7 +92,7 @@ After the order placement, there's a validation step to check whether the transa
 
 If the transaction is approved, the checkout UI redirects to the *Order Placed* page. Otherwise, it shows a warning pop-up.
 
-This validation is performed through the `transactionValidation.vtex` event of our *Payment* app, which sends a response to the checkout UI according to the following [method](https://github.com/vtex-apps/payment-authorization-app-example/blob/3e5742c87a2771998009cff4fecacb092bb3362b/react/index.js#L22):
+In our *Payment* app, this validation is performed through the `transactionValidation.vtex` event, which, when triggered, sends the payment status to the checkout UI according to the following [method](https://github.com/vtex-apps/payment-authorization-app-example/blob/3e5742c87a2771998009cff4fecacb092bb3362b/react/index.js#L22):
 
 ```javascript
 respondTransaction = (status) => {
