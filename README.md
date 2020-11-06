@@ -114,7 +114,9 @@ Thus, to access this information, just run the following command:
 const { appPayload } = this.props // This appPayload is a serialized JSON (as string).
 ```
 
-The expected response is a JSON object as in the following:
+The expected response is a JSON object consisting of the data needed for the Payment app to allow or deny an order placement. Thus, depending on the payment processes implemented in your store, the `appPayload` fields may vary.
+
+Take the following example:
 
 ```json
 {
