@@ -72,9 +72,6 @@ Now, if you go through the *checkout process*, you'll notice an additional verif
 
 By following the next steps, a Payment app will appear on the checkout screen allowing you to test the Payment app general flow.
 
-> ℹ️ Proceed with the following steps only with you want to test a Payment app flow, otherwise, skip to Step 4: Deploying the Payment app.
-
-
 3.1. Make sure you have the Test Connector with the VTEX Example Payment app configured in your account. If you do not have it yet, contact the VTEX Support Team to help you with the installation process.
 
 3.2. Edit the last name of the Test Connector to "Application". Example: `myconnectorname - Application`.
