@@ -76,7 +76,7 @@ By following the next steps, a Payment app will appear on the checkout screen al
 
 &nbsp;&nbsp;  3.1. Make sure you have the Test Connector with the VTEX Example Payment app configured in your account. If you do not have it yet, contact the VTEX Support Team to help you with the installation process.
 
-&nbsp;&nbsp;  3.2. Edit the last name of the Test Connector to "Application". Example: `myconnectorname - Application`.
+&nbsp;&nbsp;  3.2. Fill in the last name of the personal information with the word "Application".
 
 &nbsp;&nbsp;  3.3. Select the payment condition associated with the Test Connector and finish the purchase in order to test the flow.
 
