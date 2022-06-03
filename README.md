@@ -33,6 +33,8 @@ vtex use {examplename}
 
 ### Step 2: Editing the Payment app
 
+> ⚠️ This app is deprecated, step 2 should only be taken in case of deploying the app in a production environment.
+
 1. Using your terminal, clone the *Payment* app boilerplate repository to your local files by running:
 
 ```shell
@@ -56,6 +58,8 @@ vtex link
 
 ### Step 3: Running the *Payment* app
 
+> ⚠️ When testing in a workspace do not change the app name and vendor. You must keep all params in the boilerplate unchanged
+
 1. Using your browser, go to `http://{workspace}--{account}.myvtex.com/checkout?workspace={workspace}`.
 
 > ⚠️ Remember to replace the values between the curly brackets according to your scenario
@@ -64,6 +68,10 @@ vtex link
 
 ```javascript
 window.transactionAppName = '{app-name}'
+```
+* When testing in your workspace:
+```
+window.transactionAppName = 'example-payment-auth-app'
 ```
 
 Now, if you go through the *checkout process*, you'll notice an additional verification step (set in our *Payment* app) after the *Order confirmation*.
