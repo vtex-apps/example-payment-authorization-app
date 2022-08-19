@@ -1,7 +1,7 @@
 {
   "version": "1.0.7",
   "devDependencies": {
-    "@types/node": "^18.7.2",
+    "@types/node": "12.6.2",
     "@vtex/prettier-config": "^1.0.0",
     "typescript": "3.9.7"
   }

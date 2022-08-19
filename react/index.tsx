@@ -4,11 +4,11 @@ import styles from './index.css'
 interface InjectScriptProps {
   id: string
   src: string
-  onLoad: (this: GlobalEventHandlers, ev: Event) => any
+  onLoad: (this: GlobalEventHandlers, ev: Event) => void
 }
 
 type Props = {
-  appPayload: any
+  appPayload: string
 }
 
 type State = {
@@ -17,7 +17,7 @@ type State = {
 }
 
 class ExampleTransactionAuthApp extends Component<Props, State> {
-  divContainer: React.RefObject<any>
+  divContainer: React.RefObject<HTMLDivElement>
 
   constructor(props: Props) {
     super(props)
@@ -49,11 +49,13 @@ class ExampleTransactionAuthApp extends Component<Props, State> {
   handleOnLoad = () => {
     this.setState({ scriptLoaded: true })
     grecaptcha.ready(() => {
-      grecaptcha.render(this.divContainer.current, {
-        sitekey: '------>REPATCHA_V2_SITE_KEY<------', //Replace with site key
-        theme: 'dark',
-        callback: this.onVerify,
-      })
+      if (this.divContainer.current) {
+        grecaptcha.render(this.divContainer.current, {
+          sitekey: '------>REPATCHA_V2_SITE_KEY<------', //Replace with site key
+          theme: 'dark',
+          callback: this.onVerify,
+        })
+      }
     })
   }
 
