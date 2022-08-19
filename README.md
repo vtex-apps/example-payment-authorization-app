@@ -118,7 +118,7 @@ In our *Payment* app, this validation is performed through the `transactionValid
 
 ```javascript
 respondTransaction = (status) => {
-    $(window).trigger('transactionValidation.vtex', [status])
+    window.$(window).trigger('transactionValidation.vtex', [status])
 }
 ```
 

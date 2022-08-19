@@ -1,8 +1,25 @@
 import React, { Component, Fragment } from 'react'
 import styles from './index.css'
 
-class ExampleTransactionAuthApp extends Component {
-  constructor(props) {
+interface InjectScriptProps {
+  id: string
+  src: string
+  onLoad: (this: GlobalEventHandlers, ev: Event) => void
+}
+
+type Props = {
+  appPayload: string
+}
+
+type State = {
+  scriptLoaded: boolean
+  loading: boolean
+}
+
+class ExampleTransactionAuthApp extends Component<Props, State> {
+  divContainer: React.RefObject<HTMLDivElement>
+
+  constructor(props: Props) {
     super(props)
     this.state = {
       scriptLoaded: false,
@@ -13,34 +30,36 @@ class ExampleTransactionAuthApp extends Component {
   }
 
   componentWillMount = () => {
-    this.injectScript(
-      'google-recaptcha-v2',
-      'https://recaptcha.net/recaptcha/api.js?render=explicit',
-      this.handleOnLoad
-    )
+    this.injectScript({
+      id: 'google-recaptcha-v2',
+      src: 'https://recaptcha.net/recaptcha/api.js?render=explicit',
+      onLoad: this.handleOnLoad
+    })
   }
 
   componentDidMount() {
     // In case you want to remove payment loading in order to show an UI.
-    $(window).trigger('removePaymentLoading.vtex')
+    window.$(window).trigger('removePaymentLoading.vtex')
   }
 
-  respondTransaction = status => {
-    $(window).trigger('transactionValidation.vtex', [status])
+  respondTransaction = (status: boolean) => {
+    window.$(window).trigger('transactionValidation.vtex', [status])
   }
 
   handleOnLoad = () => {
     this.setState({ scriptLoaded: true })
     grecaptcha.ready(() => {
-      grecaptcha.render(this.divContainer.current, {
-        sitekey: '------>REPATCHA_V2_SITE_KEY<------', //Replace with site key
-        theme: 'dark',
-        callback: this.onVerify,
-      })
+      if (this.divContainer.current) {
+        grecaptcha.render(this.divContainer.current, {
+          sitekey: '------>REPATCHA_V2_SITE_KEY<------', //Replace with site key
+          theme: 'dark',
+          callback: this.onVerify,
+        })
+      }
     })
   }
 
-  onVerify = e => {
+  onVerify = () => {
     const parsedPayload = JSON.parse(this.props.appPayload)
     this.setState({ loading: true })
 
@@ -67,7 +86,7 @@ class ExampleTransactionAuthApp extends Component {
     })
   }
 
-  injectScript = (id, src, onLoad) => {
+  injectScript = ({ id, src, onLoad }: InjectScriptProps) => {
     if (document.getElementById(id)) {
       return
     }
