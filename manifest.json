@@ -1,7 +1,7 @@
 {
   "name": "example-payment-auth-app",
   "vendor": "vtex",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "title": "Example Payment Authentication App",
   "description": "Example Payment Authentication App",
   "defaultLocale": "en",
