@@ -1,7 +1,16 @@
 {
+  "pages": {
+    "example-payment-auth-app": {
+      "path": "/_v/public/my-cards-router/example-payment-auth-app"
+    }
+  },
   "extensions": {
     "checkout/transactions/example-payment-auth-app": {
       "component": "index"
+    },
+    "example-payment-auth-app": {
+      "component": "WrapperIframe",
+      "ssr": false
     }
   }
 }

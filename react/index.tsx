@@ -9,6 +9,7 @@ interface InjectScriptProps {
 
 type Props = {
   appPayload: string
+  isIframe: boolean
 }
 
 type State = {
@@ -30,6 +31,18 @@ class ExampleTransactionAuthApp extends Component<Props, State> {
   }
 
   componentWillMount = () => {
+    if (!('$' in window)) {
+      this.injectScript({
+        id: 'jquery',
+        src: 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js',
+        onLoad: this.injectRecaptchaApi
+      })
+    } else {
+      this.injectRecaptchaApi
+    }
+  }
+  
+  injectRecaptchaApi = () => {
     this.injectScript({
       id: 'google-recaptcha-v2',
       src: 'https://recaptcha.net/recaptcha/api.js?render=explicit',
@@ -39,11 +52,15 @@ class ExampleTransactionAuthApp extends Component<Props, State> {
 
   componentDidMount() {
     // In case you want to remove payment loading in order to show an UI.
-    window.$(window).trigger('removePaymentLoading.vtex')
+    if (!this.props.isIframe) {
+      window.$(window).trigger('removePaymentLoading.vtex')
+    }
   }
 
   respondTransaction = (status: boolean) => {
-    window.$(window).trigger('transactionValidation.vtex', [status])
+    if (!this.props.isIframe) {
+      window.$(window).trigger('transactionValidation.vtex', [status])
+    }
   }
 
   handleOnLoad = () => {
@@ -75,6 +92,8 @@ class ExampleTransactionAuthApp extends Component<Props, State> {
     fetch(parsedPayload.denyPaymentUrl).then(() => {
       this.respondTransaction(false)
     })
+
+    this.closeModal()
   }
 
   confirmTransation = () => {
@@ -84,6 +103,17 @@ class ExampleTransactionAuthApp extends Component<Props, State> {
     fetch(parsedPayload.approvePaymentUrl).then(() => {
       this.respondTransaction(true)
     })
+
+    this.closeModal()
+  }
+
+  closeModal = () => {
+    if (!this.props.isIframe) {
+      return
+    }
+
+    const close: HTMLElement = window.parent.document.getElementsByClassName("vtex-modal__close-icon")[0] as HTMLElement
+    close.click()
   }
 
   injectScript = ({ id, src, onLoad }: InjectScriptProps) => {
