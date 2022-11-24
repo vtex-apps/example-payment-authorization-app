@@ -57,12 +57,6 @@ class ExampleTransactionAuthApp extends Component<Props, State> {
     }
   }
 
-  respondTransaction = (status: boolean) => {
-    if (!this.props.isIframe) {
-      window.$(window).trigger('transactionValidation.vtex', [status])
-    }
-  }
-
   handleOnLoad = () => {
     this.setState({ scriptLoaded: true })
     grecaptcha.ready(() => {
@@ -80,8 +74,8 @@ class ExampleTransactionAuthApp extends Component<Props, State> {
     const parsedPayload = JSON.parse(this.props.appPayload)
     this.setState({ loading: true })
 
-    fetch(parsedPayload.approvePaymentUrl).then(() => {
-      this.respondTransaction(true)
+    fetch(parsedPayload.approvePaymentUrl, {method: 'POST'}).finally(() => {
+      this.finishValidation(true)
     })
   }
 
@@ -89,31 +83,28 @@ class ExampleTransactionAuthApp extends Component<Props, State> {
     const parsedPayload = JSON.parse(this.props.appPayload)
     this.setState({ loading: true })
 
-    fetch(parsedPayload.denyPaymentUrl).then(() => {
-      this.respondTransaction(false)
+    fetch(parsedPayload.denyPaymentUrl, {method: 'POST'}).finally(() => {
+      this.finishValidation(false)
     })
-
-    this.closeModal()
   }
 
   confirmTransation = () => {
     const parsedPayload = JSON.parse(this.props.appPayload)
     this.setState({ loading: true })
-
-    fetch(parsedPayload.approvePaymentUrl).then(() => {
-      this.respondTransaction(true)
+    
+    fetch(parsedPayload.approvePaymentUrl, {method: 'POST'}).finally(() => {
+      this.finishValidation(true)
     })
-
-    this.closeModal()
   }
 
-  closeModal = () => {
-    if (!this.props.isIframe) {
+  finishValidation = (status: boolean) => {
+    if (this.props.isIframe) {
+      const close: HTMLElement = window.parent.document.getElementsByClassName("vtex-modal__close-icon")[0] as HTMLElement
+      close.click()
       return
     }
 
-    const close: HTMLElement = window.parent.document.getElementsByClassName("vtex-modal__close-icon")[0] as HTMLElement
-    close.click()
+    window.$(window).trigger('transactionValidation.vtex', [status])
   }
 
   injectScript = ({ id, src, onLoad }: InjectScriptProps) => {
