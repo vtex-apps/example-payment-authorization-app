@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import styles from './index.css'
+import { postData } from './services/data.service'
 
 interface InjectScriptProps {
   id: string
@@ -74,27 +75,30 @@ class ExampleTransactionAuthApp extends Component<Props, State> {
     const parsedPayload = JSON.parse(this.props.appPayload)
     this.setState({ loading: true })
 
-    fetch(parsedPayload.approvePaymentUrl, {method: 'POST'}).finally(() => {
-      this.finishValidation(true)
-    })
+    postData(parsedPayload.approvePaymentUrl)
+      .finally(() => {
+        this.finishValidation(true)
+      })
   }
 
   cancelTransaction = () => {
     const parsedPayload = JSON.parse(this.props.appPayload)
     this.setState({ loading: true })
 
-    fetch(parsedPayload.denyPaymentUrl, {method: 'POST'}).finally(() => {
-      this.finishValidation(false)
-    })
+    postData(parsedPayload.denyPaymentUrl)
+      .finally(() => {
+        this.finishValidation(false)
+      })
   }
 
   confirmTransation = () => {
     const parsedPayload = JSON.parse(this.props.appPayload)
     this.setState({ loading: true })
     
-    fetch(parsedPayload.approvePaymentUrl, {method: 'POST'}).finally(() => {
-      this.finishValidation(true)
-    })
+    postData(parsedPayload.approvePaymentUrl)
+      .finally(() => {
+        this.finishValidation(true)
+      })
   }
 
   finishValidation = (status: boolean) => {
