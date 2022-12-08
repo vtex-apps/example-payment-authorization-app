@@ -1,12 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import styles from './index.css'
 import { postData } from './services/data.service'
-
-interface InjectScriptProps {
-  id: string
-  src: string
-  onLoad: (this: GlobalEventHandlers, ev: Event) => void
-}
+import { injectScript } from './services/inject-script'
 
 type Props = {
   appPayload: string
@@ -33,18 +28,13 @@ class ExampleTransactionAuthApp extends Component<Props, State> {
 
   componentWillMount = () => {
     if (!('$' in window)) {
-      this.injectScript({
+      injectScript({
         id: 'jquery',
-        src: 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js',
-        onLoad: this.injectRecaptchaApi
+        src: 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'
       })
-    } else {
-      this.injectRecaptchaApi
     }
-  }
-  
-  injectRecaptchaApi = () => {
-    this.injectScript({
+
+    injectScript({
       id: 'google-recaptcha-v2',
       src: 'https://recaptcha.net/recaptcha/api.js?render=explicit',
       onLoad: this.handleOnLoad
@@ -109,23 +99,6 @@ class ExampleTransactionAuthApp extends Component<Props, State> {
     }
 
     window.$(window).trigger('transactionValidation.vtex', [status])
-  }
-
-  injectScript = ({ id, src, onLoad }: InjectScriptProps) => {
-    if (document.getElementById(id)) {
-      return
-    }
-
-    const head = document.getElementsByTagName('head')[0]
-
-    const js = document.createElement('script')
-    js.id = id
-    js.src = src
-    js.async = true
-    js.defer = true
-    js.onload = onLoad
-
-    head.appendChild(js)
   }
 
   render() {
